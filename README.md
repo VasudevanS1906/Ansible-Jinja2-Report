@@ -16,7 +16,7 @@ ansible-jinja2-report/
 ├── template.yml           # Ansible playbook
 ├── template.j2            # Jinja2 template for report
 └── sample_output.txt      # Sample output of the generated report
-''''
+'''
 # Usage:
 
           ansible-playbook -i hosts template.yml
