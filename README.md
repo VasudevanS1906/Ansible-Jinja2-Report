@@ -10,13 +10,13 @@ Ansible playbook and Jinja2 template to generate a server uptime report.
 - Generates a timestamped report file on the Ansible control node
 
 # File Structure:
-
+'''
 ansible-jinja2-report/
 ├── hosts                  # Inventory file with server list
 ├── template.yml           # Ansible playbook
 ├── template.j2            # Jinja2 template for report
 └── sample_output.txt      # Sample output of the generated report
-
+''''
 # Usage:
 
           ansible-playbook -i hosts template.yml
