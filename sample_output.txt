@@ -1,0 +1,45 @@
+controlplane $ cat /root/hosts
+[servers]
+controlplane
+node01
+controlplane $ cp /answers/template.yml /root/template.yml
+controlplane $ nano /root/template.yml
+controlplane $ cp /answers/template.j2 /root/template.j2
+controlplane $ nano /root/template.j2
+controlplane $ ansible-playbook -i /root/hosts /root/template.yml
+
+PLAY [Start of Jinja2 Template Push] *********************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************
+[DEPRECATION WARNING]: Distribution ubuntu 20.04 on host node01 should use /usr/bin/python3, but is using /usr/bin/python for backward compatibility with
+ prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See 
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information. This feature will be removed in version 2.12. 
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+ok: [node01]
+[DEPRECATION WARNING]: Distribution ubuntu 20.04 on host controlplane should use /usr/bin/python3, but is using /usr/bin/python for backward 
+compatibility with prior Ansible releases. A future Ansible release will default to using the discovered platform python for this host. See 
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more information. This feature will be removed in version 2.12. 
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+ok: [controlplane]
+
+TASK [Get information for uptime on all systems] *********************************************************************************************************
+changed: [node01]
+changed: [controlplane]
+
+TASK [Report out to just main server] ********************************************************************************************************************
+changed: [controlplane -> localhost]
+
+PLAY RECAP ***********************************************************************************************************************************************
+controlplane               : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node01                     : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+controlplane $ ls /root/report.*.txt
+/root/report.20240526T124136.txt
+controlplane $ cat /root/report.*.txt
+This is a system Validation at 12:41:36 on 2024-05-26
+
+Unreachable systems:
+----------------------------------------------
+
+Hosts who have been up longer than a day:
+----------------------------------------------
